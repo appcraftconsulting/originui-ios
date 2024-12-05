@@ -15,9 +15,15 @@ extension ButtonStyle where Self == OriginButtonStyle {
     public static func origin(
         level: OriginButtonLevel = .default,
         shape: OriginButtonShape = .default,
-        loaderPlacement: OriginButtonLoaderPlacement? = nil
+        loaderPlacement: OriginButtonLoaderPlacement? = nil,
+        fullWidth: Bool = false
     ) -> Self {
-        .init(level: level, shape: shape, loaderPlacement: loaderPlacement)
+        .init(
+            level: level,
+            shape: shape,
+            loaderPlacement: loaderPlacement,
+            fullWidth: fullWidth
+        )
     }
 }
 
@@ -27,6 +33,7 @@ public struct OriginButtonStyle: ButtonStyle {
     let level: OriginButtonLevel
     let shape: OriginButtonShape
     let loaderPlacement: OriginButtonLoaderPlacement?
+    let fullWidth: Bool
     
     private struct ForegroundModifier: ViewModifier {
         let configuration: Configuration
@@ -183,7 +190,9 @@ public struct OriginButtonStyle: ButtonStyle {
             
             configuration.label
                 .labelStyle(OriginButtonLabelStyle(shape: shape))
+                .lineLimit(1)
         }
+        .frame(maxWidth: fullWidth ? .infinity : nil)
         .opacity(loaderPlacement == .overlay ? 0.0 : 1.0)
         .overlay {
             if loaderPlacement == .overlay {
