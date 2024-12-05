@@ -9,6 +9,7 @@ import SwiftUI
 
 struct OriginButtonLabelStyle: LabelStyle {
     let shape: OriginButtonShape
+    let loaderPlacement: OriginButtonLoaderPlacement?
     
     private var hasTitle: Bool {
         shape == .rounded || shape == .capsule
@@ -16,8 +17,10 @@ struct OriginButtonLabelStyle: LabelStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         HStack(alignment: .center, spacing: 8) {
-            configuration.icon
-                .opacity(hasTitle ? 0.6 : 1.0)
+            if loaderPlacement != .left {
+                configuration.icon
+                    .opacity(hasTitle ? 0.6 : 1.0)
+            }
             
             if hasTitle {
                 configuration.title

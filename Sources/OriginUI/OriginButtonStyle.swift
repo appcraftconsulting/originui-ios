@@ -94,26 +94,26 @@ public struct OriginButtonStyle: ButtonStyle {
             case .capsule:
                 content
                     .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
+                    .frame(height: 44)
                     .padding(hasBorder ? 0 : 1)
                     .background(background, in: .capsule)
                     .padding(hasBorder ? 0.5 : 0)
             case .rounded:
                 content
                     .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
+                    .frame(height: 44)
                     .padding(hasBorder ? 0 : 1)
                     .background(background, in: .rect(cornerRadius: .radius(.lg)))
                     .padding(hasBorder ? 0.5 : 0)
             case .circle:
                 content
-                    .padding(8)
+                    .frame(width: 44, height: 44)
                     .padding(hasBorder ? 0 : 1)
                     .background(background, in: .circle)
                     .padding(hasBorder ? 0.5 : 0)
             case .square:
                 content
-                    .padding(8)
+                    .frame(width: 44, height: 44)
                     .padding(hasBorder ? 0 : 1)
                     .background(background, in: .rect(cornerRadius: .radius(.lg)))
                     .padding(hasBorder ? 0.5 : 0)
@@ -189,7 +189,7 @@ public struct OriginButtonStyle: ButtonStyle {
             }
             
             configuration.label
-                .labelStyle(OriginButtonLabelStyle(shape: shape))
+                .labelStyle(OriginButtonLabelStyle(shape: shape, loaderPlacement: loaderPlacement))
                 .lineLimit(1)
         }
         .frame(maxWidth: fullWidth ? .infinity : nil)
