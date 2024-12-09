@@ -18,4 +18,8 @@ public struct OriginColor: Sendable {
     public let mutedForeground = Color(.mutedForeground)
     public let foreground = Color(.foreground)
     public let input = Color(.input)
+    public let accent = Color(.accent)
+    public let ring = Color(.ring)
+    public let primaryForeground = Color(.primaryForeground)
+    public let primary = Color(.originPrimary)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Radius {
+public enum Radius {
     case lg, md, sm
     
     var value: CGFloat {
@@ -22,7 +22,7 @@ enum Radius {
     }
 }
 
-extension CGFloat {
+public extension CGFloat {
     static func radius(_ radius: Radius) -> Self {
         radius.value
     }

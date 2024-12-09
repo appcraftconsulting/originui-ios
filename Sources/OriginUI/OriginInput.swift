@@ -48,6 +48,8 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
         self.textField = textField
         self.startAddon = nil
         self.endAddon = nil
+        
+        configureTextEditorPadding()
     }
     
     public init(
@@ -75,6 +77,8 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
         self.textField = textField
         self.startAddon = startAddon
         self.endAddon = nil
+        
+        configureTextEditorPadding()
     }
     
     public init(
@@ -102,6 +106,8 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
         self.textField = textField
         self.startAddon = nil
         self.endAddon = endAddon
+        
+        configureTextEditorPadding()
     }
     
     public init(
@@ -130,6 +136,8 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
         self.textField = textField
         self.startAddon = startAddon
         self.endAddon = endAddon
+        
+        configureTextEditorPadding()
     }
     
     public var body: some View {
@@ -203,5 +211,12 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
             .font(.system(size: 14, weight: .regular))
             .multilineTextAlignment(.leading)
         }
+    }
+    
+    // MARK: - Private functions
+    
+    private func configureTextEditorPadding() {
+        UITextView.appearance().textContainerInset =
+             UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8)
     }
 }

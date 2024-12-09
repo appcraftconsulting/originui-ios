@@ -22,7 +22,7 @@ struct OriginInputShadowModifier: ViewModifier {
     func body(content: Content) -> some View {
         if hasShadow {
             content
-                .shadow(color: .black.opacity(0.05), radius: 2, x: 0, y: 1)
+                .originShadow(.sm)
         } else {
             content
         }
