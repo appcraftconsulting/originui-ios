@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct Notification: Equatable, Identifiable {
-    public enum `Type` {
+    public enum `Type`: String, CaseIterable {
         case success, info, warning, error
     }
     

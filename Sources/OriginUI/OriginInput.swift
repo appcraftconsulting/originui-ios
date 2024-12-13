@@ -11,7 +11,7 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
     @Environment(\.isEnabled) private var isEnabled
     @FocusState private var isFocused
     
-    private let title: LocalizedStringKey
+    private let title: LocalizedStringKey?
     private let hint: LocalizedStringKey?
     private let helperText: LocalizedStringKey?
     private let errorText: LocalizedStringKey?
@@ -25,7 +25,7 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
     private let endAddon: (() -> EndAddon)?
 
     public init(
-        _ title: LocalizedStringKey,
+        _ title: LocalizedStringKey? = nil,
         hint: LocalizedStringKey? = nil,
         helperText: LocalizedStringKey? = nil,
         errorText: LocalizedStringKey? = nil,
@@ -53,7 +53,7 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
     }
     
     public init(
-        _ title: LocalizedStringKey,
+        _ title: LocalizedStringKey? = nil,
         hint: LocalizedStringKey? = nil,
         helperText: LocalizedStringKey? = nil,
         errorText: LocalizedStringKey? = nil,
@@ -82,7 +82,7 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
     }
     
     public init(
-        _ title: LocalizedStringKey,
+        _ title: LocalizedStringKey? = nil,
         hint: LocalizedStringKey? = nil,
         helperText: LocalizedStringKey? = nil,
         errorText: LocalizedStringKey? = nil,
@@ -111,7 +111,7 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
     }
     
     public init(
-        _ title: LocalizedStringKey,
+        _ title: LocalizedStringKey? = nil,
         hint: LocalizedStringKey? = nil,
         helperText: LocalizedStringKey? = nil,
         errorText: LocalizedStringKey? = nil,
@@ -143,22 +143,25 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
     public var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .center, spacing: 8) {
-                Group {
-                    if isRequired {
-                        Text(title, bundle: bundle) + Text(verbatim: " *").foregroundStyle(Color(.destructive))
-                    } else {
-                        Text(title, bundle: bundle)
+                if let title {
+                    Group {
+                        if isRequired {
+                            Text(title, bundle: bundle) + Text(verbatim: " *").foregroundStyle(Color(.destructive))
+                        } else {
+                            Text(title, bundle: bundle)
+                        }
                     }
+                    .foregroundStyle(Color(.foreground))
+                    .font(.system(size: 16, weight: .medium))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
                 }
-                .foregroundStyle(Color(.foreground))
-                .font(.system(size: 16, weight: .medium))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
                 
                 if let hint {
                     Text(hint, bundle: bundle)
                         .foregroundStyle(Color(.mutedForeground))
                         .font(.system(size: 16, weight: .regular))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                         .multilineTextAlignment(.trailing)
                 }
             }
@@ -168,6 +171,7 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
                     startAddon()
                         .foregroundStyle(Color(.mutedForeground))
                         .padding(.leading, 12)
+                        .lineLimit(1)
                 }
                 
                 textField()
@@ -178,6 +182,7 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
                     endAddon()
                         .foregroundStyle(Color(.mutedForeground))
                         .padding(.trailing, 12)
+                        .lineLimit(1)
                 }
             }
             .font(.system(size: 16, weight: .regular))
