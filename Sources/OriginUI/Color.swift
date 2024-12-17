@@ -22,4 +22,6 @@ public struct OriginColor: Sendable {
     public let ring = Color(.ring)
     public let primaryForeground = Color(.primaryForeground)
     public let primary = Color(.originPrimary)
+    public let secondary = Color(.originSecondary)
+    public let emerald500 = Color(.emerald500)
 }

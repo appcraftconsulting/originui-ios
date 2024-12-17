@@ -87,6 +87,7 @@ public struct OriginNotificationView: View {
             }
         }
         .foregroundStyle(textColor)
+        .tint(textColor)
         .frame(maxWidth: .infinity, alignment: .leading)
         .font(.system(size: 16, weight: .regular))
         .multilineTextAlignment(.leading)

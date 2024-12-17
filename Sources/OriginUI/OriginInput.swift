@@ -142,27 +142,29 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .center, spacing: 8) {
-                if let title {
-                    Group {
-                        if isRequired {
-                            Text(title, bundle: bundle) + Text(verbatim: " *").foregroundStyle(Color(.destructive))
-                        } else {
-                            Text(title, bundle: bundle)
+            if title != nil || hint != nil {
+                HStack(alignment: .center, spacing: 8) {
+                    if let title {
+                        Group {
+                            if isRequired {
+                                Text(title, bundle: bundle) + Text(verbatim: " *").foregroundStyle(Color(.destructive))
+                            } else {
+                                Text(title, bundle: bundle)
+                            }
                         }
+                        .foregroundStyle(Color(.foreground))
+                        .font(.system(size: 16, weight: .medium))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
                     }
-                    .foregroundStyle(Color(.foreground))
-                    .font(.system(size: 16, weight: .medium))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-                }
-                
-                if let hint {
-                    Text(hint, bundle: bundle)
-                        .foregroundStyle(Color(.mutedForeground))
-                        .font(.system(size: 16, weight: .regular))
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .multilineTextAlignment(.trailing)
+                    
+                    if let hint {
+                        Text(hint, bundle: bundle)
+                            .foregroundStyle(Color(.mutedForeground))
+                            .font(.system(size: 16, weight: .regular))
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .multilineTextAlignment(.trailing)
+                    }
                 }
             }
 
