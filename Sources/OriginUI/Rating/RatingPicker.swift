@@ -34,7 +34,7 @@ public struct RatingPicker: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .font(.system(size: 16, weight: .medium))
-                .foregroundStyle(Color.origin.foreground)
+                .foregroundStyle(.origin.foreground)
             
             HStack(spacing: -1) {
                 ForEach(range, id: \.self) { rate in
@@ -46,8 +46,8 @@ public struct RatingPicker: View {
                             .padding(.vertical, 10)
                             .frame(maxWidth: .infinity)
                     }
-                    .foregroundStyle(Color.origin.foreground)
-                    .background(rate == selection ? Color.origin.accent : Color.origin.background)
+                    .foregroundStyle(.origin.foreground)
+                    .background(rate == selection ? .origin.accent : .origin.background)
                     .overlay {
                         UnevenRoundedRectangle(
                             topLeadingRadius: rate == range.min() ? .radius(.lg) : .zero,
@@ -56,7 +56,7 @@ public struct RatingPicker: View {
                             topTrailingRadius: rate == range.max() ? .radius(.lg) : .zero,
                             style: .circular
                         )
-                        .stroke(selection == rate ? Color.origin.ring : Color.origin.border, lineWidth: 1)
+                        .stroke(selection == rate ? .origin.ring : .origin.border, lineWidth: 1)
                     }
                     .zIndex(selection == rate ? 10 : 1)
                 }
@@ -79,7 +79,7 @@ public struct RatingPicker: View {
                 }
             }
             .font(.system(size: 14, weight: .regular))
-            .foregroundStyle(Color.origin.mutedForeground)
+            .foregroundStyle(.origin.mutedForeground)
         }
     }
 }

@@ -11,6 +11,10 @@ public extension Color {
     static let origin = OriginColor()
 }
 
+public extension ShapeStyle where Self == Color {
+    static var origin: OriginColor { .init() }
+}
+
 public struct OriginColor: Sendable {
     public let border = Color(.border)
     public let background = Color(.background)
@@ -24,4 +28,5 @@ public struct OriginColor: Sendable {
     public let primary = Color(.originPrimary)
     public let secondary = Color(.originSecondary)
     public let emerald500 = Color(.emerald500)
+    public let destructive = Color(.destructive)
 }

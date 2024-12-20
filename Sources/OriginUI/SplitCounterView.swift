@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SplitCounterView.swift
 //  OriginUI
 //
 //  Created by François Boulais on 08/12/2024.
@@ -38,15 +38,15 @@ public struct SplitCounterView: View {
                 Group {
                     Text(component.value, format: .number)
                         .font(.system(size: 16, weight: .regular, design: .monospaced))
-                        .foregroundStyle(Color.origin.foreground)
+                        .foregroundStyle(.origin.foreground)
                     +
                     Text(component.unit)
                         .font(.system(size: 16, weight: .regular))
-                        .foregroundStyle(Color.origin.mutedForeground)
+                        .foregroundStyle(.origin.mutedForeground)
                 }
                 .padding(8)
                 .background(
-                    Color.origin.primary.opacity(0.15),
+                    .origin.primary.opacity(0.15),
                     in: UnevenRoundedRectangle(
                         topLeadingRadius: component == components.first ? .radius(.lg) : .zero,
                         bottomLeadingRadius: component == components.first ? .radius(.lg) : .zero,

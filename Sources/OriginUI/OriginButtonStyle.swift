@@ -69,14 +69,14 @@ public struct OriginButtonStyle: ButtonStyle {
             case .primary:
                 switch configuration.role {
                 case .destructive:
-                    return Color(.destructive).opacity(configuration.isPressed ? 0.9 : 1.0)
+                    return .origin.destructive.opacity(configuration.isPressed ? 0.9 : 1.0)
                 default:
-                    return Color(.originPrimary).opacity(configuration.isPressed ? 0.9 : 1.0)
+                    return .origin.primary.opacity(configuration.isPressed ? 0.9 : 1.0)
                 }
             case .secondary:
-                return Color(.originSecondary).opacity(configuration.isPressed ? 0.8 : 1.0)
+                return .origin.secondary.opacity(configuration.isPressed ? 0.8 : 1.0)
             case .tertiary:
-                return configuration.isPressed ? Color(.accent) : Color(.background)
+                return configuration.isPressed ? .origin.accent : .origin.background
             }
         }
         

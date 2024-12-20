@@ -41,11 +41,11 @@ public struct OriginMiniSegmentedControl<Choice, Label>: View where Choice: Iden
                 }
                 .buttonStyle(.plain)
                 .allowsHitTesting(choice.id != selection.id)
-                .foregroundStyle(choice.id == selection.id ? Color.origin.foreground : Color.origin.mutedForeground.opacity(0.70))
+                .foregroundStyle(choice.id == selection.id ? .origin.foreground : .origin.mutedForeground.opacity(0.70))
                 .background {
                     if choice.id == selection.id {
                         Circle()
-                            .fill(Color.origin.background)
+                            .fill(.origin.background)
                             .matchedGeometryEffect(id: Identifier.selector.rawValue, in: namespace)
                     }
                 }
@@ -56,7 +56,7 @@ public struct OriginMiniSegmentedControl<Choice, Label>: View where Choice: Iden
         .padding(2)
         .background {
             Capsule()
-                .fill(Color.origin.input.opacity(0.5))
+                .fill(.origin.input.opacity(0.5))
         }
         .compositingGroup()
         .opacity(isEnabled ? 1.0 : 0.5)

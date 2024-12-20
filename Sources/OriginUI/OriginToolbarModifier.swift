@@ -32,8 +32,8 @@ struct OriginToolbarModifier<Toolbar: View>: ViewModifier {
                     }
                     .padding(16)
                     .frame(maxWidth: .infinity, alignment: .trailing)
-                    .foregroundStyle(Color.origin.foreground)
-                    .background(Color.origin.background)
+                    .foregroundStyle(.origin.foreground)
+                    .background(.origin.background)
                     
                     if edge == .top {
                         Color.origin.border

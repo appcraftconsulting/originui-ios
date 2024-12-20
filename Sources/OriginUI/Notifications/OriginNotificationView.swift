@@ -50,7 +50,7 @@ public struct OriginNotificationView: View {
                 return Color(.red600)
             }
         } else {
-            return Color.origin.foreground
+            return .origin.foreground
         }
     }
     
