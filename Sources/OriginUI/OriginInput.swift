@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+public let OriginInputLayout = VStackLayout(alignment: .leading, spacing: .gap(.gap2dot5))
+
 public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View {
     @Environment(\.isEnabled) private var isEnabled
     @FocusState private var isFocused
@@ -141,48 +143,31 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if title != nil || hint != nil {
-                HStack(alignment: .center, spacing: 8) {
-                    if let title {
-                        Group {
-                            if isRequired {
-                                Text(title, bundle: bundle) + Text(verbatim: " *").foregroundStyle(Color(.destructive))
-                            } else {
-                                Text(title, bundle: bundle)
-                            }
-                        }
-                        .foregroundStyle(Color(.foreground))
-                        .font(.system(size: 16, weight: .medium))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .multilineTextAlignment(.leading)
-                    }
-                    
-                    if let hint {
-                        Text(hint, bundle: bundle)
-                            .foregroundStyle(Color(.mutedForeground))
-                            .font(.system(size: 16, weight: .regular))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .multilineTextAlignment(.trailing)
-                    }
-                }
-            }
+        OriginInputLayout {
+            OriginInputHeader(
+                title: title,
+                hint: hint,
+                isRequired: isRequired,
+                bundle: bundle
+            )
 
             HStack(spacing: .zero) {
                 if let startAddon {
                     startAddon()
-                        .foregroundStyle(Color(.mutedForeground))
+                        .foregroundStyle(.origin.mutedForeground)
                         .padding(.leading, 12)
                         .lineLimit(1)
                 }
                 
                 textField()
-                    .textFieldStyle(.padding(hasStartAddon: startAddon != nil, hasEndAddon: endAddon != nil))
+                    .foregroundStyle(.origin.foreground)
+                    .modifier(OriginInputPaddingModifier(hasStartAddon: startAddon != nil, hasEndAddon: endAddon != nil))
                     .focused($isFocused)
+                    .lineLimit(1)
                 
                 if let endAddon {
                     endAddon()
-                        .foregroundStyle(Color(.mutedForeground))
+                        .foregroundStyle(.origin.mutedForeground)
                         .padding(.trailing, 12)
                         .lineLimit(1)
                 }
@@ -209,7 +194,7 @@ public struct OriginInput<StartAddon: View, EndAddon: View, Content: View>: View
             Group {
                 if let errorText {
                     Text(errorText, bundle: bundle)
-                        .foregroundStyle(Color(.destructive))
+                        .foregroundStyle(.origin.destructive)
                 } else if let helperText {
                     Text(helperText, bundle: bundle)
                         .foregroundStyle(Color(.mutedForeground))

@@ -31,7 +31,23 @@ struct OriginNotificationsListView: View {
         }
         .scrollDisabled(true)
         .defaultScrollAnchor(.top)
-        .animation(.easeInOut(duration: 0.15), value: notificationsManager.notifications)
+        .animation(.easeInOut(duration: 0.25), value: notificationsManager.notifications)
         .environment(notificationsManager)
+        .sensoryFeedback(trigger: notificationsManager.notifications.last) { _, notification in
+            if let notification {
+                switch notification.type {
+                case .success:
+                    return .success
+                case .error:
+                    return .error
+                case .warning:
+                    return .warning
+                case .info:
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        }
     }
 }

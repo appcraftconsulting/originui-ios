@@ -29,6 +29,7 @@ struct OriginToolbarModifier<Toolbar: View>: ViewModifier {
 
                     HStack(spacing: 16) {
                         toolbar()
+                            .buttonStyle(.origin)
                     }
                     .padding(16)
                     .frame(maxWidth: .infinity, alignment: .trailing)
